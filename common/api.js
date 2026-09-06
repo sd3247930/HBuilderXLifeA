@@ -1,106 +1,155 @@
 /**
- * 后端接口封装（与 Web 端契约一致）
+ * 本地数据适配层：保留原 api.xxx() 方法与返回结构，
+ * 底层全部改为 uni.storage 读写，彻底脱离 HTTP 后端。
  */
-import { request } from './request'
+import {
+  registerLocal,
+  loginLocal,
+  logoutLocal,
+  getCurrentUserLocal,
+  updateNicknameLocal,
+  changePasswordLocal,
+  getCategoriesLocal,
+  addCategoryLocal,
+  renameCategoryLocal,
+  deleteCategoryLocal,
+  getAccountsLocal,
+  addAccountLocal,
+  deleteAccountLocal,
+  getRecordsLocal,
+  createRecordLocal,
+  updateRecordLocal,
+  deleteRecordLocal,
+  getHabitsLocal,
+  addHabitLocal,
+  updateHabitLocal,
+  deleteHabitLocal,
+  toggleCheckinLocal,
+  getTasksLocal,
+  addTaskLocal,
+  updateTaskLocal,
+  deleteTaskLocal,
+  completeTaskLocal,
+  getDashboardLocal,
+  getStatsSummaryLocal
+} from './storage'
 
-function post(path, data) {
-  return request(path, { method: 'POST', data: data || {} })
+function ok(data) {
+  return { ok: true, data }
+}
+
+function fail(error) {
+  return { ok: false, error: error || '操作失败' }
 }
 
 export const api = {
-  register(username, password, nickname) {
-    return post('/api/register', { username, password, nickname })
+  async register(username, password, nickname) {
+    return registerLocal(username, password, nickname)
   },
-  login(username, password) {
-    return post('/api/login', { username, password })
+  async login(username, password) {
+    return loginLocal(username, password)
   },
-  me() {
-    return request('/api/me')
+  async me() {
+    const user = getCurrentUserLocal()
+    return user ? ok({ user }) : fail('未登录')
   },
-  logout() {
-    return post('/api/logout')
+  async logout() {
+    return logoutLocal()
   },
-  updateNickname(nickname) {
-    return post('/api/update-nickname', { nickname })
+  async updateNickname(nickname) {
+    return updateNicknameLocal(nickname)
   },
-  changePassword(oldPassword, newPassword) {
-    return post('/api/change-password', { oldPassword, newPassword })
+  async changePassword(oldPassword, newPassword) {
+    return changePasswordLocal(oldPassword, newPassword)
   },
-  categories() {
-    return request('/api/categories')
+
+  async categories() {
+    return ok({ categories: getCategoriesLocal() })
   },
-  addCategory(type, name, icon) {
-    return post('/api/categories', { type, name, icon })
+  async addCategory(type, name, icon) {
+    const row = addCategoryLocal(type, name, icon)
+    return row ? ok({ category: row }) : fail('未登录')
   },
-  renameCategory(id, name, icon) {
-    return post('/api/categories/rename', { id, name, icon })
+  async renameCategory(id, name, icon) {
+    const row = renameCategoryLocal(id, name, icon)
+    return row ? ok({ category: row }) : fail('分类不存在')
   },
-  deleteCategory(id) {
-    return post('/api/categories/delete', { id })
+  async deleteCategory(id) {
+    deleteCategoryLocal(id)
+    return ok({})
   },
-  accounts() {
-    return request('/api/accounts')
+
+  async accounts() {
+    return ok({ accounts: getAccountsLocal() })
   },
-  addAccount(name, emoji) {
-    return post('/api/accounts', { name, emoji })
+  async addAccount(name, emoji) {
+    const row = addAccountLocal(name, emoji)
+    return row ? ok({ account: row }) : fail('未登录')
   },
-  deleteAccount(id) {
-    return post('/api/accounts/delete', { id })
+  async deleteAccount(id) {
+    deleteAccountLocal(id)
+    return ok({})
   },
-  records(params) {
-    const q = []
-    Object.keys(params || {}).forEach((k) => {
-      if (params[k] !== '' && params[k] != null) q.push(k + '=' + encodeURIComponent(params[k]))
-    })
-    return request('/api/records' + (q.length ? '?' + q.join('&') : ''))
+
+  async records(params) {
+    return ok(getRecordsLocal(params))
   },
-  createRecord(payload) {
-    return post('/api/records', payload)
+  async createRecord(payload) {
+    const row = createRecordLocal(payload)
+    return row ? ok({ record: row }) : fail('未登录')
   },
-  updateRecord(id, payload) {
-    return post('/api/records/update', Object.assign({ id }, payload))
+  async updateRecord(id, payload) {
+    const row = updateRecordLocal(id, payload)
+    return row ? ok({ record: row }) : fail('记录不存在')
   },
-  deleteRecord(id) {
-    return post('/api/records/delete', { id })
+  async deleteRecord(id) {
+    deleteRecordLocal(id)
+    return ok({})
   },
-  dashboard() {
-    return request('/api/dashboard')
+
+  async dashboard() {
+    return ok(getDashboardLocal())
   },
-  habits(weekStart) {
-    return request('/api/habits' + (weekStart ? '?week_start=' + weekStart : ''))
+
+  async habits(weekStart) {
+    return ok({ habits: getHabitsLocal(weekStart) })
   },
-  addHabit(name, icon) {
-    return post('/api/habits', { name, icon })
+  async addHabit(name, icon) {
+    const row = addHabitLocal(name, icon)
+    return row ? ok({ habit: row }) : fail('未登录')
   },
-  updateHabit(id, name, icon) {
-    return post('/api/habits/update', { id, name, icon })
+  async updateHabit(id, name, icon) {
+    const row = updateHabitLocal(id, name, icon)
+    return row ? ok({ habit: row }) : fail('习惯不存在')
   },
-  deleteHabit(id) {
-    return post('/api/habits/delete', { id })
+  async deleteHabit(id) {
+    deleteHabitLocal(id)
+    return ok({})
   },
-  checkin(habitId, date) {
-    return post('/api/habits/' + habitId + '/checkin', date ? { date } : {})
+  async checkin(habitId, date) {
+    return toggleCheckinLocal(habitId, date)
   },
-  tasks(params) {
-    const q = []
-    Object.keys(params || {}).forEach((k) => {
-      if (params[k] !== '' && params[k] != null) q.push(k + '=' + encodeURIComponent(params[k]))
-    })
-    return request('/api/tasks' + (q.length ? '?' + q.join('&') : ''))
+
+  async tasks(params) {
+    return ok(getTasksLocal(params))
   },
-  addTask(payload) {
-    return post('/api/tasks', payload)
+  async addTask(payload) {
+    const row = addTaskLocal(payload)
+    return row ? ok({ task: row }) : fail('未登录')
   },
-  updateTask(id, payload) {
-    return post('/api/tasks/update', Object.assign({ id }, payload))
+  async updateTask(id, payload) {
+    const row = updateTaskLocal(id, payload)
+    return row ? ok({ task: row }) : fail('任务不存在')
   },
-  deleteTask(id) {
-    return post('/api/tasks/delete', { id })
+  async deleteTask(id) {
+    deleteTaskLocal(id)
+    return ok({})
   },
-  completeTask(id) {
-    return post('/api/tasks/' + id + '/complete')
+  async completeTask(id) {
+    return completeTaskLocal(id)
   },
-  statsSummary() {
-    return request('/api/stats/summary')
+
+  async statsSummary() {
+    return ok(getStatsSummaryLocal())
   }
 }

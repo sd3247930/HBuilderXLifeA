@@ -37,6 +37,18 @@
         <view class="btn btn-ghost style-card" @click="go('/pages/categories/categories')">分类管理</view>
       </view>
     </view>
+
+    <view class="card">
+      <view class="card-title">隐私与合规</view>
+      <view class="list-row row-between" @click="go('/pages/compliance/compliance')">
+        <text>隐私政策与权限说明</text>
+        <text class="muted">查看 →</text>
+      </view>
+      <view class="list-row row-between">
+        <text>当前版本</text>
+        <text class="muted">v1.0.2</text>
+      </view>
+    </view>
   </view>
 </template>
 

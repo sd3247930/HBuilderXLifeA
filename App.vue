@@ -1,7 +1,9 @@
 <script>
+import { initLocalStore } from './common/storage'
+
 export default {
   onLaunch() {
-    // 主题在页面根节点通过 class 应用，这里无需额外处理
+    initLocalStore()
   }
 }
 </script>

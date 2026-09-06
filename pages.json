@@ -9,6 +9,7 @@
 		{ "path": "pages/tasks/tasks", "style": { "navigationBarTitleText": "待办任务" } },
 		{ "path": "pages/new-task/new-task", "style": { "navigationBarTitleText": "新建任务" } },
 		{ "path": "pages/settings/settings", "style": { "navigationBarTitleText": "设置" } },
+		{ "path": "pages/compliance/compliance", "style": { "navigationBarTitleText": "隐私与合规" } },
 		{ "path": "pages/add-habit/add-habit", "style": { "navigationBarTitleText": "添加习惯" } }
 	],
 	"globalStyle": {

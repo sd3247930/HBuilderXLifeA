@@ -86,7 +86,7 @@
 </template>
 
 <script>
-import { ref } from 'vue'
+import { ref, computed } from 'vue'
 import { api } from '../common/api'
 import { fmtMoney } from '../common/format'
 import { useAuth } from '../common/auth'
@@ -97,7 +97,7 @@ export default {
   setup() {
     const d = ref({ today: {}, month: {}, habits: [], tasks: [] })
     const auth = useAuth()
-    const name = auth.state.user ? auth.state.user.nickname || auth.state.user.username : ''
+    const name = computed(() => (auth.state.user ? auth.state.user.nickname || auth.state.user.username : ''))
 
     function money(v) {
       return fmtMoney(v)
