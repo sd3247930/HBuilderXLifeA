@@ -1,9 +1,12 @@
 <template>
   <view>
     <view class="page-head row-between">
-      <view>
-        <view class="head-h2">今日概览</view>
-        <view class="muted">你好，{{ name }}，今天也要元气满满。</view>
+      <view class="row head-left">
+        <UserAvatar :src="avatar.dataUrl" size="88rpx" navigate="/pages/settings/settings" />
+        <view class="head-text">
+          <view class="head-h2">今日概览</view>
+          <view class="muted">你好，{{ name }}，今天也要元气满满。</view>
+        </view>
       </view>
       <text class="btn btn-ghost btn-sm head-btn" @click="go('/pages/settings/settings')">⚙️ 设置</text>
     </view>
@@ -90,13 +93,17 @@ import { ref, computed } from 'vue'
 import { api } from '../common/api'
 import { fmtMoney } from '../common/format'
 import { useAuth } from '../common/auth'
+import { useAvatar } from '../common/avatar'
+import UserAvatar from './UserAvatar.vue'
 
 export default {
   name: 'HomeTab',
+  components: { UserAvatar },
   emits: ['tab'],
   setup() {
     const d = ref({ today: {}, month: {}, habits: [], tasks: [] })
     const auth = useAuth()
+    const avatar = useAvatar()
     const name = computed(() => (auth.state.user ? auth.state.user.nickname || auth.state.user.username : ''))
 
     function money(v) {
@@ -109,7 +116,7 @@ export default {
       const r = await api.dashboard()
       if (r.ok) d.value = r.data.dashboard || d.value
     }
-    return { d, name, money, go, load }
+    return { d, avatar, name, money, go, load }
   },
   mounted() {
     this.load()
@@ -119,6 +126,8 @@ export default {
 
 <style lang="scss">
 .page-head { margin-bottom: 24rpx; }
+.head-left { min-width: 0; flex: 1; }
+.head-text { margin-left: 16rpx; min-width: 0; }
 .head-h2 { font-size: 40rpx; font-weight: 700; margin-bottom: 8rpx; }
 .head-btn { flex-shrink: 0; }
 .card-head { margin-bottom: 14rpx; }

@@ -3,8 +3,7 @@
     <view class="card">
       <view class="card-title">账户信息</view>
       <view class="list-row">
-        <image v-if="avatar.dataUrl" class="account-avatar" :src="avatar.dataUrl" mode="aspectFill" />
-        <view v-else class="account-avatar placeholder">👤</view>
+        <UserAvatar :src="avatar.dataUrl" size="88rpx" class="account-avatar-cell" />
         <view class="list-main">
           <input v-if="editingNick" v-model="nickDraft" class="inline-input" @confirm="saveNick" />
           <view v-else class="list-title">{{ displayName }}</view>
@@ -60,9 +59,10 @@ import { useTheme } from '../../common/theme'
 import { fmtDateTime } from '../../common/format'
 import EmojiPicker from '../../components/EmojiPicker.vue'
 import { useAvatar } from '../../common/avatar'
+import UserAvatar from '../../components/UserAvatar.vue'
 
 export default {
-  components: { EmojiPicker },
+  components: { EmojiPicker, UserAvatar },
   setup() {
     const themeApi = useTheme()
     const theme = themeApi.state
@@ -163,8 +163,7 @@ export default {
 </script>
 
 <style lang="scss">
-.account-avatar { width: 88rpx; height: 88rpx; border-radius: 50%; background: #eef2ff; margin-right: 16rpx; flex-shrink: 0; }
-.account-avatar.placeholder { display: flex; align-items: center; justify-content: center; font-size: 44rpx; }
+.account-avatar-cell { margin-right: 16rpx; }
 .inline-input { border: 1rpx solid #0f52ba; border-radius: 10rpx; padding: 8rpx 12rpx; font-size: 28rpx; }
 .gap { height: 24rpx; }
 </style>
