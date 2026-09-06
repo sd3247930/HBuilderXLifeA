@@ -457,49 +457,72 @@ export function getDashboardLocal() {
 }
 
 export function getStatsSummaryLocal() {
-  const records = rowsOf(KEY_RECORDS)
-  const cats = rowsOf(KEY_CATS)
-  const income = sumByType(records, 'income')
-  const expense = sumByType(records, 'expense')
-  const dates = records.map((r) => r.record_date).filter(Boolean).sort()
-  const monthlyMap = {}
-  records.forEach((r) => {
-    const ym = String(r.record_date).slice(0, 7)
-    if (!ym) return
-    const key = ym + '|' + r.type
-    monthlyMap[key] = (monthlyMap[key] || 0) + Number(r.amount || 0)
-  })
-  const monthly = Object.keys(monthlyMap).map((k) => {
-    const [ym, type] = k.split('|')
-    return { ym, type, total: monthlyMap[k] }
-  }).sort((a, b) => (a.ym === b.ym ? (a.type < b.type ? -1 : 1) : a.ym < b.ym ? -1 : 1))
+  try {
+    const records = rowsOf(KEY_RECORDS)
+    const cats = rowsOf(KEY_CATS)
+    const income = sumByType(records, 'income')
+    const expense = sumByType(records, 'expense')
 
-  const catMap = {}
-  records.filter((r) => r.type === 'expense').forEach((r) => {
-    const cat = cats.find((c) => c.id === r.category_id)
-    const name = cat ? cat.name : '未分类'
-    catMap[name] = (catMap[name] || 0) + Number(r.amount || 0)
-  })
-  const expenseByCategory = Object.keys(catMap).map((name) => ({ category: name, total: catMap[name] }))
-    .sort((a, b) => b.total - a.total)
+    const monthlyMap = {}
+    records.forEach((r) => {
+      const month = String(r.record_date || '').slice(0, 7)
+      if (!month) return
+      if (!monthlyMap[month]) monthlyMap[month] = { month, income: 0, expense: 0 }
+      const amount = Number(r.amount || 0)
+      if (r.type === 'income') monthlyMap[month].income += amount
+      else monthlyMap[month].expense += amount
+    })
+    const sortedMonths = Object.keys(monthlyMap).sort()
+    const monthly = sortedMonths.map((m) => ({
+      month: m,
+      income: Math.round(monthlyMap[m].income * 100) / 100,
+      expense: Math.round(monthlyMap[m].expense * 100) / 100
+    }))
 
-  const week = weekDates(todayLocal())
-  const habitStats = rowsOf(KEY_HABITS).map((h) => ({
-    name: h.name,
-    weekCount: checkinDatesOf(h.id).filter((d) => week.indexOf(d) >= 0).length
-  }))
+    const catMap = {}
+    records.filter((r) => r.type === 'expense').forEach((r) => {
+      const cat = cats.find((c) => c.id === r.category_id)
+      const key = cat ? cat.id + '|' + cat.name : 'unknown|未分类'
+      if (!catMap[key]) {
+        catMap[key] = { label: cat ? cat.name : '未分类', icon: cat ? cat.icon || '' : '', value: 0 }
+      }
+      catMap[key].value += Number(r.amount || 0)
+    })
+    const categories = Object.keys(catMap).map((k) => catMap[k])
+      .map((c) => Object.assign({}, c, { value: Math.round(c.value * 100) / 100 }))
+      .sort((a, b) => b.value - a.value)
 
-  return {
-    overview: {
-      record_count: records.length,
-      income,
-      expense,
-      balance: income - expense
-    },
-    range: dates.length ? { start: dates[0], end: dates[dates.length - 1] } : { start: '', end: '' },
-    monthly,
-    expense_by_category: expenseByCategory,
-    habit_stats: habitStats
+    const week = weekDates(todayLocal())
+    const habitStats = rowsOf(KEY_HABITS).map((h) => ({
+      name: h.name,
+      icon: h.icon || '',
+      weekCount: checkinDatesOf(h.id).filter((d) => week.indexOf(d) >= 0).length
+    }))
+
+    return {
+      overview: {
+        totalIncome: Math.round(income * 100) / 100,
+        totalExpense: Math.round(expense * 100) / 100,
+        balance: Math.round((income - expense) * 100) / 100,
+        recordCount: records.length
+      },
+      monthly,
+      categories,
+      habit_stats: habitStats,
+      range: {
+        start: sortedMonths.length ? sortedMonths[0] : '',
+        end: sortedMonths.length ? sortedMonths[sortedMonths.length - 1] : ''
+      }
+    }
+  } catch (e) {
+    console.error('[storage] getStatsSummaryLocal 异常:', e)
+    return {
+      overview: { totalIncome: 0, totalExpense: 0, balance: 0, recordCount: 0 },
+      monthly: [],
+      categories: [],
+      habit_stats: [],
+      range: { start: '', end: '' }
+    }
   }
 }
 

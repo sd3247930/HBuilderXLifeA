@@ -171,6 +171,7 @@ export default {
       saving.value = false
       if (res.ok) {
         uni.showToast({ title: '记录已保存' })
+        if (typeof uni.$emit === 'function') uni.$emit('recordUpdated')
         amount.value = ''
         note.value = ''
         pickDefaultCategory()

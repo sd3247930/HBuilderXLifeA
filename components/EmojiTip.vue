@@ -12,11 +12,12 @@ import { emojiName } from '../common/emoji'
 export default {
   name: 'EmojiTip',
   props: {
-    emoji: { type: String, default: '' }
+    emoji: { type: String, default: '' },
+    tip: { type: String, default: '' }
   },
   setup(props) {
     return {
-      label: emojiName(props.emoji)
+      label: props.tip || emojiName(props.emoji)
     }
   }
 }
