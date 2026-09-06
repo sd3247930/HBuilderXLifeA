@@ -1,3 +1,7 @@
 unpackage/
 .DS_Store
 .hbuilderx/
+*.log
+*.tmp
+Thumbs.db
+.idea/

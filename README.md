@@ -1,33 +1,47 @@
-# LifestyleApp uni-app 多端版
+# LifestyleApp（uni-app 多端版）
 
-基于 uni-app（Vue 3，HBuilderX 工程）实现，界面/交互/功能对齐 Web 版（frontend-vue），兼容 iOS / Android / 微信小程序。
+基于 uni-app（Vue 3，HBuilderX 工程）的本地优先生活方式管理工具：记账、习惯打卡、待办任务与统计。**纯本地存储，不依赖任何后端服务**，数据保存在设备本地（App 系统存储 / H5 localStorage / 小程序平台存储）。
 
 ## 页面结构
 
-- 登录 / 注册
-- 主界面（底部 4 Tab：首页、记账、习惯、统计 + “更多”抽屉）
-  - 首页：今日/本月收支、进行中习惯、今日任务、快捷入口
-  - 记账：记一笔（收入/支出、金额、日期、分类、账户、备注）
-  - 习惯：周视图打卡（前后周切换、打卡/取消）
-  - 统计：指标卡 + SVG 风格 canvas 折线/环形/柱状图（无导出）
-- “更多”抽屉：账户管理、分类管理、待办任务、新建任务、财务记录、设置、退出登录
-- 财务记录：10 条/页、筛选、编辑、删除
-- 设置：头像、深色模式、四套主题（无数据管理）
-
-说明：按需求**未实现**统计导出（Excel/CSV）、帮助与支持、设置中“数据管理”。
+- 登录 / 注册（本地账户，密码加盐哈希后保存）
+- 主界面：底部 4 Tab（首页、记账、习惯、统计）+ “更多”抽屉
+  - 首页：今日/本月财务摘要、进行中习惯、今日任务、快捷入口
+  - 记账：收入/支出切换、金额、日期、分类底部弹层、资金账户、备注
+  - 习惯：周视图打卡/取消、周切换、连续天数统计
+  - 统计：三列指标卡、财务趋势图、支出分类甜甜圈图（按住/悬停扇区显示分类与金额）、习惯坚持
+- 财务记录：分页列表、支出/收入筛选、编辑、删除
+- 账户管理：昵称、密码、资金账户
+- 分类管理：支出/收入分类的新增、改名、删除
+- 设置：个人头像（上传/移除）、深色模式、四套主题（经典/毛玻璃/新拟态/新野兽派）、隐私与合规说明
 
 ## 运行
 
-用 HBuilderX 打开本目录：
+使用 HBuilderX 打开本目录：
 
-1. 运行到浏览器（H5）：菜单 运行 → 运行到浏览器
-2. 运行到微信小程序：菜单 运行 → 运行到小程序模拟器 → 微信开发者工具（manifest 中已关闭 urlCheck）
-3. 运行到手机（Android/iOS）：运行 → 运行到手机或模拟器（需自定义基座/证书）
+1. 运行到浏览器（H5）：菜单 → 运行 → 运行到浏览器
+2. 运行到微信小程序：菜单 → 运行 → 运行到小程序模拟器 → 微信开发者工具
+3. 运行到手机（Android/iOS）：菜单 → 运行 → 运行到手机或模拟器
 
-后端接口地址在 `common/config.js` 的 `BASE_URL`：
+首次使用请在应用内注册本地账户，注册后自动写入预置分类与资金账户。
 
-- H5 / 微信开发者工具：默认 `http://127.0.0.1:8765`（微信开发者工具需勾选“不校验合法域名”）
-- Android/iOS 真机：改为电脑局域网 IP（如 `http://192.168.x.x:8765`）
-- 正式发布：改为已备案的 https 域名（小程序需配置 request 合法域名）
+## 数据存储键
 
-数据存储键与 Web 端一致：`lifestyleapp_token` / `lifestyleapp_nickname` / `lifestyleapp_theme` / `lifestyleapp_style` / `lifestyleapp_avatar`。
+以下键仅保存在本机，不对外传输：
+
+| 键名 | 用途 |
+| --- | --- |
+| `lifestyleapp_users` | 本地用户列表 |
+| `lifestyleapp_session` / `lifestyleapp_token` / `lifestyleapp_nickname` | 登录会话 |
+| `lifestyleapp_categories` / `lifestyleapp_accounts` | 分类与资金账户 |
+| `lifestyleapp_records` | 记账记录 |
+| `lifestyleapp_habits` / `lifestyleapp_checkins` | 习惯与打卡 |
+| `lifestyleapp_tasks` | 待办任务 |
+| `lifestyleapp_avatar` | 头像 dataURL |
+| `lifestyleapp_theme` / `lifestyleapp_style` | 深色模式与主题风格 |
+| `lifestyleapp_meta` | 存储版本信息 |
+
+## 说明
+
+- 当前版本不接入云端、不包含统计导出（CSV/Excel）、不包含“数据管理/重置”入口；
+- 隐私与权限说明见应用内“设置 → 隐私与合规”。
