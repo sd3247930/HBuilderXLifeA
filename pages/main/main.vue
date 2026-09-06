@@ -13,8 +13,7 @@
     <view v-if="drawer" class="mask" @click="drawer = false"></view>
     <view v-if="drawer" class="drawer">
       <view class="drawer-head">
-        <image v-if="avatar.dataUrl" class="drawer-avatar" :src="avatar.dataUrl" mode="aspectFill" />
-        <view v-else class="drawer-avatar placeholder">👤</view>
+        <UserAvatar size="96rpx" navigate="/pages/settings/settings" />
         <view class="drawer-user">
           <view class="drawer-name">{{ displayName }}</view>
           <view class="drawer-sub">生活专属助手</view>
@@ -45,18 +44,17 @@ import HomeTab from '../../components/HomeTab.vue'
 import RecordTab from '../../components/RecordTab.vue'
 import HabitsTab from '../../components/HabitsTab.vue'
 import StatsTab from '../../components/StatsTab.vue'
+import UserAvatar from '../../components/UserAvatar.vue'
 import { useAuth } from '../../common/auth'
 import { useTheme } from '../../common/theme'
 import { api } from '../../common/api'
-import { useAvatar } from '../../common/avatar'
 
 export default {
-  components: { HomeTab, RecordTab, HabitsTab, StatsTab },
+  components: { HomeTab, RecordTab, HabitsTab, StatsTab, UserAvatar },
   setup() {
     const themeApi = useTheme()
     const theme = themeApi.state
     const themeClass = themeApi.classNames
-    const avatar = useAvatar()
     const auth = useAuth()
     const displayName = computed(() => auth.displayName)
     const tab = ref('home')
@@ -94,7 +92,7 @@ export default {
       uni.reLaunch({ url: '/pages/login/login' })
     }
 
-    return { theme, themeClass, avatar, displayName, tab, drawer, refreshKey, tabs, menus, switchTab, go, logout }
+    return { theme, themeClass, displayName, tab, drawer, refreshKey, tabs, menus, switchTab, go, logout }
   },
   onLoad() {
     if (!useAuth().isLogin) {
@@ -142,8 +140,6 @@ export default {
 .drawer-title { font-size: 34rpx; font-weight: 700; margin-bottom: 24rpx; }
 .drawer-head { display: flex; align-items: center; padding: 12rpx 8rpx 24rpx; border-bottom: 1rpx solid #f1f5f9; margin-bottom: 20rpx; }
 .th-dark .drawer-head { border-color: #2b3547; }
-.drawer-avatar { width: 96rpx; height: 96rpx; border-radius: 50%; background: #eef2ff; flex-shrink: 0; }
-.drawer-avatar.placeholder { display: flex; align-items: center; justify-content: center; font-size: 48rpx; }
 .drawer-user { margin-left: 20rpx; min-width: 0; }
 .drawer-name { font-size: 30rpx; font-weight: 600; }
 .drawer-sub { font-size: 22rpx; color: #64748b; margin-top: 4rpx; }
