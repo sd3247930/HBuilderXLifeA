@@ -47,6 +47,7 @@ import StatsTab from '../../components/StatsTab.vue'
 import UserAvatar from '../../components/UserAvatar.vue'
 import { useAuth } from '../../common/auth'
 import { useTheme } from '../../common/theme'
+import { syncThemeFromStorage } from '../../common/theme'
 import { api } from '../../common/api'
 
 export default {
@@ -105,6 +106,7 @@ export default {
     })
   },
   onShow() {
+    syncThemeFromStorage()
     this.refreshKey++
   }
 }

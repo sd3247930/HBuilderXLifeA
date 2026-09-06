@@ -48,49 +48,173 @@ page {
   color: $c-dark-text;
 }
 
-/* 风格变体：毛玻璃 / 新拟态 / 新野兽派（近似） */
-.th-glass.page {
-  background: linear-gradient(135deg, #eef2ff, #f5f3ff 50%, #ecfeff);
+/* ===== 风格变体：毛玻璃 ===== */
+.th-glass.page,
+.th-glass.app-root {
+  background:
+    radial-gradient(circle at 12% 8%, rgba(116, 191, 255, 0.32), transparent 36%),
+    radial-gradient(circle at 90% 16%, rgba(205, 157, 255, 0.24), transparent 34%),
+    linear-gradient(145deg, #e8f3ff 0%, #f3edff 50%, #e8fbf8 100%);
+}
+.th-glass.th-dark.page,
+.th-glass.th-dark.app-root {
+  background:
+    radial-gradient(circle at 12% 8%, rgba(45, 90, 160, 0.35), transparent 36%),
+    radial-gradient(circle at 90% 16%, rgba(105, 70, 160, 0.25), transparent 34%),
+    linear-gradient(145deg, #101827 0%, #1b1f35 50%, #10242a 100%);
 }
 .th-glass .card {
-  background: rgba(255, 255, 255, 0.78);
-}
-.th-glass.app-root {
-  background: linear-gradient(135deg, #eef2ff, #f5f3ff 50%, #ecfeff);
-}
-.th-glass.th-dark.page {
-  background: linear-gradient(135deg, #111827, #1e293b);
+  background: rgba(255, 255, 255, 0.55);
+  border: 1rpx solid rgba(255, 255, 255, 0.72);
+  border-radius: 28rpx;
+  box-shadow: 0 12rpx 32rpx rgba(81, 106, 156, 0.16);
+  backdrop-filter: blur(18rpx) saturate(140%);
+  -webkit-backdrop-filter: blur(18rpx) saturate(140%);
 }
 .th-glass.th-dark .card {
-  background: rgba(30, 41, 59, 0.82);
+  background: rgba(30, 41, 59, 0.6);
+  border-color: rgba(255, 255, 255, 0.08);
 }
-.th-neo.page {
-  background: #e8ebf2;
+.th-glass .btn-primary {
+  background: linear-gradient(135deg, #4f7cff, #3b68ef);
+  border-color: rgba(255, 255, 255, 0.35);
+  box-shadow: 0 8rpx 20rpx rgba(79, 124, 255, 0.28);
 }
+.th-glass .field input,
+.th-glass .field textarea,
+.th-glass .picker-box,
+.th-glass .seg {
+  background: rgba(255, 255, 255, 0.55);
+  border-color: rgba(255, 255, 255, 0.75);
+  backdrop-filter: blur(10rpx);
+  -webkit-backdrop-filter: blur(10rpx);
+}
+.th-glass.th-dark .field input,
+.th-glass.th-dark .field textarea,
+.th-glass.th-dark .picker-box,
+.th-glass.th-dark .seg {
+  background: rgba(18, 24, 38, 0.6);
+  border-color: rgba(255, 255, 255, 0.08);
+}
+
+/* ===== 风格变体：新拟态 ===== */
+.th-neo.page,
 .th-neo.app-root {
   background: #e8ebf2;
 }
+.th-neo.th-dark.page,
+.th-neo.th-dark.app-root {
+  background: #131a24;
+}
 .th-neo .card {
   background: #e8ebf2;
-  box-shadow: -6rpx -6rpx 14rpx #ffffff, 6rpx 6rpx 14rpx #cdd3de;
+  border: 0;
+  border-radius: 26rpx;
+  box-shadow: 10rpx 10rpx 22rpx #cdd3de, -10rpx -10rpx 22rpx #ffffff;
+}
+.th-neo.th-dark .card {
+  background: #131a24;
+  box-shadow: 10rpx 10rpx 22rpx #0a0f17, -10rpx -10rpx 22rpx #232c3a;
 }
 .th-neo .btn-primary {
-  box-shadow: -4rpx -4rpx 8rpx #f4f6fa, 4rpx 4rpx 8rpx #cdd3de;
+  background: #5e7ce2;
+  border: 0;
+  box-shadow: 5rpx 5rpx 12rpx #9aa7c8, -5rpx -5rpx 12rpx #ffffff;
+}
+.th-neo .btn-primary:active {
+  box-shadow: inset 4rpx 4rpx 8rpx #445ba8, inset -4rpx -4rpx 8rpx #7898ff;
+}
+.th-neo .field input,
+.th-neo .field textarea,
+.th-neo .picker-box,
+.th-neo .seg,
+.th-neo .chip {
+  background: #e8ebf2;
+  border: 0;
+  box-shadow: inset 4rpx 4rpx 9rpx #cdd3de, inset -4rpx -4rpx 9rpx #ffffff;
+}
+.th-neo.th-dark .field input,
+.th-neo.th-dark .field textarea,
+.th-neo.th-dark .picker-box,
+.th-neo.th-dark .seg,
+.th-neo.th-dark .chip {
+  background: #131a24;
+  box-shadow: inset 4rpx 4rpx 9rpx #0a0f17, inset -4rpx -4rpx 9rpx #232c3a;
+}
+.th-neo.th-dark .field input,
+.th-neo.th-dark .field textarea,
+.th-neo.th-dark .picker-box {
+  color: #e5e9f0;
+}
+
+/* ===== 风格变体：新野兽派 ===== */
+.th-brutal.page,
+.th-brutal.app-root {
+  background: #fff8e7;
+}
+.th-brutal.th-dark.page,
+.th-brutal.th-dark.app-root {
+  background: #17140f;
 }
 .th-brutal .card {
-  border: 4rpx solid #111827;
-  border-radius: 0;
-  box-shadow: 8rpx 8rpx 0 #111827;
+  background: #ffffff;
+  border: 4rpx solid #111111;
+  border-radius: 6rpx;
+  box-shadow: 8rpx 8rpx 0 #111111;
 }
-.th-brutal.app-root {
-  background: #fdfdfc;
+.th-brutal.th-dark .card {
+  background: #241f16;
+  border-color: #ffffff;
+  box-shadow: 8rpx 8rpx 0 #ffffff;
 }
 .th-brutal .btn-primary {
-  border: 4rpx solid #111827;
+  border: 4rpx solid #111111;
+  border-radius: 4rpx;
+  box-shadow: 6rpx 6rpx 0 #111111;
+  background: #ff5c35;
+  color: #ffffff;
+}
+.th-brutal .btn-primary:active {
+  transform: translate(4rpx, 4rpx);
+  box-shadow: none;
+}
+.th-brutal .btn-secondary {
+  background: #ffd84d;
+  border: 3rpx solid #111111;
+  border-radius: 4rpx;
+  color: #111111;
+}
+.th-brutal .field input,
+.th-brutal .field textarea,
+.th-brutal .picker-box {
+  background: #ffffff;
+  border: 3rpx solid #111111;
+  border-radius: 6rpx;
+  box-shadow: 4rpx 4rpx 0 #111111;
+}
+.th-brutal .seg {
+  background: #ffffff;
+  border: 3rpx solid #111111;
+  border-radius: 4rpx;
+}
+.th-brutal .seg .seg-btn.active {
+  background: #ffd84d;
+  color: #111111;
   border-radius: 0;
-  box-shadow: 6rpx 6rpx 0 #111827;
-  background: #f59e0b;
-  color: #111827;
+}
+.th-brutal .chip {
+  background: #ffffff;
+  border: 2rpx solid #111111;
+  border-radius: 4rpx;
+  box-shadow: 2rpx 2rpx 0 #111111;
+}
+.th-brutal.th-dark .field input,
+.th-brutal.th-dark .field textarea,
+.th-brutal.th-dark .picker-box {
+  background: #ffffff;
+  border-color: #ffffff;
+  box-shadow: 4rpx 4rpx 0 #ffffff;
+  color: #111111;
 }
 
 /* ========== 通用组件 ========== */
@@ -232,5 +356,99 @@ uni-input .uni-input-input {
   padding-left: calc(env(safe-area-inset-left) + 32rpx);
   padding-right: calc(env(safe-area-inset-right) + 32rpx);
   padding-bottom: calc(env(safe-area-inset-bottom) + 150rpx);
+}
+
+/* ===== 主题覆盖：各 Tab/页面自定义表面（卡片/面板/选择器） ===== */
+.th-glass .finance-card,
+.th-glass .card-half,
+.th-glass .quick-actions,
+.th-glass .kpi-card,
+.th-glass .chart-card,
+.th-glass .cat-cell,
+.th-glass .cat-sheet,
+.th-glass .amount-field {
+  background: rgba(255, 255, 255, 0.55) !important;
+  border: 1rpx solid rgba(255, 255, 255, 0.75) !important;
+  border-radius: 28rpx !important;
+  box-shadow: 0 12rpx 30rpx rgba(81, 106, 156, 0.16) !important;
+  backdrop-filter: blur(16rpx) saturate(140%);
+  -webkit-backdrop-filter: blur(16rpx) saturate(140%);
+}
+.th-glass.th-dark .finance-card,
+.th-glass.th-dark .card-half,
+.th-glass.th-dark .quick-actions,
+.th-glass.th-dark .kpi-card,
+.th-glass.th-dark .chart-card,
+.th-glass.th-dark .cat-cell,
+.th-glass.th-dark .cat-sheet,
+.th-glass.th-dark .amount-field {
+  background: rgba(30, 41, 59, 0.6) !important;
+  border-color: rgba(255, 255, 255, 0.08) !important;
+}
+
+.th-neo .finance-card,
+.th-neo .card-half,
+.th-neo .quick-actions,
+.th-neo .kpi-card,
+.th-neo .chart-card,
+.th-neo .cat-sheet {
+  background: #e8ebf2 !important;
+  border: 0 !important;
+  border-radius: 26rpx !important;
+  box-shadow: 10rpx 10rpx 22rpx #cdd3de, -10rpx -10rpx 22rpx #ffffff !important;
+}
+.th-neo .cat-cell,
+.th-neo .amount-field {
+  background: #e8ebf2 !important;
+  border: 0 !important;
+  box-shadow: inset 4rpx 4rpx 9rpx #cdd3de, inset -4rpx -4rpx 9rpx #ffffff !important;
+}
+.th-neo.th-dark .finance-card,
+.th-neo.th-dark .card-half,
+.th-neo.th-dark .quick-actions,
+.th-neo.th-dark .kpi-card,
+.th-neo.th-dark .chart-card,
+.th-neo.th-dark .cat-sheet,
+.th-neo.th-dark .cat-cell,
+.th-neo.th-dark .amount-field {
+  background: #131a24 !important;
+  color: #e5e9f0;
+  box-shadow: 10rpx 10rpx 22rpx #0a0f17, -10rpx -10rpx 22rpx #232c3a !important;
+}
+.th-neo.th-dark .cat-cell,
+.th-neo.th-dark .amount-field {
+  box-shadow: inset 4rpx 4rpx 9rpx #0a0f17, inset -4rpx -4rpx 9rpx #232c3a !important;
+}
+
+.th-brutal .finance-card,
+.th-brutal .card-half,
+.th-brutal .quick-actions,
+.th-brutal .kpi-card,
+.th-brutal .chart-card,
+.th-brutal .cat-sheet {
+  background: #ffffff !important;
+  border: 3rpx solid #111111 !important;
+  border-radius: 6rpx !important;
+  box-shadow: 6rpx 6rpx 0 #111111 !important;
+}
+.th-brutal .cat-cell,
+.th-brutal .amount-field {
+  background: #ffffff !important;
+  border: 2rpx solid #111111 !important;
+  border-radius: 4rpx !important;
+  box-shadow: 3rpx 3rpx 0 #111111 !important;
+}
+.th-brutal.th-dark .finance-card,
+.th-brutal.th-dark .card-half,
+.th-brutal.th-dark .quick-actions,
+.th-brutal.th-dark .kpi-card,
+.th-brutal.th-dark .chart-card,
+.th-brutal.th-dark .cat-sheet,
+.th-brutal.th-dark .cat-cell,
+.th-brutal.th-dark .amount-field {
+  background: #241f16 !important;
+  border-color: #ffffff !important;
+  box-shadow: 6rpx 6rpx 0 #ffffff !important;
+  color: #e5e9f0;
 }
 </style>
