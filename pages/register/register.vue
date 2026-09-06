@@ -8,19 +8,19 @@
       </view>
       <view class="field">
         <text class="fl">用户名</text>
-        <input v-model="username" placeholder="3-20 位字母、数字或下划线" />
+        <input v-model="username" class="auth-input" :class="{ 'auth-input-focus': focusUser }" placeholder="3-20 位字母、数字或下划线" placeholder-style="color:#b0b8c4;font-size:28rpx;" @focus="focusUser = true" @blur="focusUser = false" />
       </view>
       <view class="field">
         <text class="fl">昵称（可选）</text>
-        <input v-model="nickname" placeholder="给自己起个好听的名字" />
+        <input v-model="nickname" class="auth-input" :class="{ 'auth-input-focus': focusNick }" placeholder="给自己起个好听的名字" placeholder-style="color:#b0b8c4;font-size:28rpx;" @focus="focusNick = true" @blur="focusNick = false" />
       </view>
       <view class="field">
         <text class="fl">密码</text>
-        <input v-model="password" password placeholder="至少 6 位" />
+        <input v-model="password" password class="auth-input" :class="{ 'auth-input-focus': focusPass }" placeholder="至少 6 位" placeholder-style="color:#b0b8c4;font-size:28rpx;" @focus="focusPass = true" @blur="focusPass = false" />
       </view>
       <view class="field">
         <text class="fl">确认密码</text>
-        <input v-model="confirm" password placeholder="再次输入密码" />
+        <input v-model="confirm" password class="auth-input" :class="{ 'auth-input-focus': focusConfirm }" placeholder="再次输入密码" placeholder-style="color:#b0b8c4;font-size:28rpx;" @focus="focusConfirm = true" @blur="focusConfirm = false" />
       </view>
       <view v-if="error" class="form-error">{{ error }}</view>
       <button class="btn btn-primary btn-block auth-btn" :loading="loading" @click="submit">注册</button>
@@ -45,6 +45,10 @@ export default {
     const nickname = ref('')
     const password = ref('')
     const confirm = ref('')
+    const focusUser = ref(false)
+    const focusNick = ref(false)
+    const focusPass = ref(false)
+    const focusConfirm = ref(false)
     const error = ref('')
     const loading = ref(false)
 
@@ -77,7 +81,7 @@ export default {
       }
     }
 
-    return { theme, themeClass, username, nickname, password, confirm, error, loading, submit, back }
+    return { theme, themeClass, username, nickname, password, confirm, focusUser, focusNick, focusPass, focusConfirm, error, loading, submit, back }
   }
 }
 </script>
@@ -100,33 +104,63 @@ export default {
 .auth-btn { margin-top: 8rpx; }
 .auth-switch { margin-top: 28rpx; text-align: center; font-size: 26rpx; color: #64748b; }
 .link { color: #0f52ba; }
-/* ---- 注册页输入框/表单字号与尺寸（固定 px，兼容 H5/Edge） ---- */
+/* ---- 注册页输入框/表单字号与尺寸 ---- */
 .field {
-  margin-bottom: 18px;
+  margin-bottom: 24rpx;
 }
 .field .fl {
-  font-size: 15px;
-  margin-bottom: 8px;
+  font-size: 28rpx;
+  color: #334155;
+  margin-bottom: 12rpx;
 }
-.field uni-input {
-  height: 48px;                 /* 触控舒适区 ≥44px */
+/* #ifdef MP-WEIXIN */
+.field input.auth-input {
   width: 100%;
-  padding: 0;                   /* 清掉 uni 默认内边距，内层输入框才能铺满 */
-  border: 1px solid #cbd5e1;
-  border-radius: 10px;
-  background: #ffffff;
+  height: 88rpx;
+  padding: 0 24rpx;
+  background: #f7f9fc;
+  border: 1px solid #dce0e5;
+  border-radius: 16rpx;
   box-sizing: border-box;
-  font-size: 18px;              /* ≥16px，防 iOS 缩放、桌面清晰 */
+  font-size: 32rpx;
+  color: #1a1a1a;
+}
+.field input.auth-input.auth-input-focus {
+  border-color: #0f52ba !important;
+  background: #ffffff;
+}
+/* #endif */
+
+/* #ifndef MP-WEIXIN */
+.field uni-input {
+  height: 44px;
+  width: 100%;
+  padding: 0;
+  border: 1px solid #dce0e5;
+  border-radius: 8px;
+  background: #f7f9fc;
+  box-sizing: border-box;
+  font-size: 16px;
+  color: #1a1a1a;
   line-height: 1.5;
 }
+.field uni-input.auth-input-focus,
 .field uni-input:focus-within {
   border-color: #0f52ba !important;
+  background: #ffffff;
 }
+.field uni-input .uni-input-input {
+  font-size: 16px;
+  color: #1a1a1a;
+}
+/* #endif */
+
 .auth-btn {
   height: 48px;
   font-size: 16px;
 }
 .uni-input-placeholder {
-  font-size: 15px;
+  font-size: 14px;
+  color: #b0b8c4;
 }
 </style>
