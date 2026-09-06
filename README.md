@@ -21,45 +21,36 @@
 
 <table>
   <tr>
-    <td width="50%" valign="top">
-      <h3>🏠 首页仪表盘</h3>
-      <img src="docs/screenshots/home.png" width="100%" alt="首页仪表盘" />
-      <p><strong>核心交互</strong>：今日/本月财务摘要、习惯进度、今日任务与快捷入口跳转。</p>
-      <p><strong>页面构成</strong>：头像/昵称 → 今日财务卡片 → 进行中习惯 → 今日任务 → 快捷入口。</p>
-      <p><strong>后续优化</strong>：财务摘要合并为三列紧凑卡；习惯/任务默认折叠只展示前两项；快捷入口使用统一图标网格。</p>
+    <td align="center" width="50%">
+      <img src="docs/screenshots/home.png" width="280" alt="首页仪表盘" /><br />
+      <b>🏠 首页仪表盘</b><br />
+      财务摘要 · 习惯 · 任务 · 快捷入口
     </td>
-    <td width="50%" valign="top">
-      <h3>✍️ 记一笔（记账）</h3>
-      <img src="docs/screenshots/record.png" width="100%" alt="记账页" />
-      <p><strong>核心交互</strong>：支出/收入切换、金额录入、日期选择、分类底部弹层、资金账户与备注。</p>
-      <p><strong>页面构成</strong>：收支切换 → 金额 → 日期 → 分类 → 资金账户 → 备注 → 保存记录。</p>
-      <p><strong>后续优化</strong>：金额输入放大、备注折叠展示；分类与账户选择可合并为更短的录入流。</p>
+    <td align="center" width="50%">
+      <img src="docs/screenshots/record.png" width="280" alt="记一笔" /><br />
+      <b>✍️ 记一笔</b><br />
+      收支录入 · 分类 · 账户
     </td>
   </tr>
   <tr>
-    <td width="50%" valign="top">
-      <h3>✅ 习惯打卡</h3>
-      <img src="docs/screenshots/habits.png" width="100%" alt="习惯打卡页" />
-      <p><strong>核心交互</strong>：周视图打卡/取消、上一周/下一周切换、添加习惯入口。</p>
-      <p><strong>页面构成</strong>：周切换 → 习惯卡片（名称 + 本周次数/最长连续天数 + 七日圆点）→ 添加习惯。</p>
-      <p><strong>后续优化</strong>：圆点触控区增大（≥44px），连续天数徽章更醒目。</p>
+    <td align="center" width="50%">
+      <img src="docs/screenshots/habits.png" width="280" alt="习惯打卡" /><br />
+      <b>✅ 习惯打卡</b><br />
+      周视图打卡 · 连续天数
     </td>
-    <td width="50%" valign="top">
-      <h3>📊 统计分析</h3>
-      <img src="docs/screenshots/stats.png" width="100%" alt="统计页" />
-      <p><strong>核心交互</strong>：总收支/结余指标卡；≥2 个月时展示趋势折线；支出分类甜甜圈图支持按住/悬停查看详情。</p>
-      <p><strong>页面构成</strong>：三列指标卡 → 财务趋势 → 支出分类（环形图 + 图例）→ 习惯坚持。</p>
-      <p><strong>后续优化</strong>：单月数据提供趋势占位引导；环形图图例紧凑化并支持更多分类分页。</p>
+    <td align="center" width="50%">
+      <img src="docs/screenshots/stats.png" width="280" alt="统计分析" /><br />
+      <b>📊 统计分析</b><br />
+      趋势图 · 甜甜圈图 · 习惯
     </td>
   </tr>
   <tr>
-    <td width="50%" colspan="2" valign="top">
-      <h3>☰ 更多（个人中心/功能入口）</h3>
-      <img src="docs/screenshots/more.png" width="100%" alt="更多抽屉" />
-      <p><strong>核心交互</strong>：账户/分类管理、待办任务、财务记录、设置入口与退出登录。</p>
-      <p><strong>页面构成</strong>：抽屉头部（头像 + 昵称）→ 功能列表 → 退出登录。</p>
-      <p><strong>后续优化</strong>：按“数据管理/系统”分组展示；统一菜单图标风格。</p>
+    <td align="center" width="50%">
+      <img src="docs/screenshots/more.png" width="280" alt="更多抽屉" /><br />
+      <b>☰ 更多抽屉</b><br />
+      账户/分类管理 · 设置 · 退出
     </td>
+    <td align="center" width="50%"></td>
   </tr>
 </table>
 
