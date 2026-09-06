@@ -15,45 +15,6 @@
 - 分类管理：支出/收入分类的新增、改名、删除
 - 设置：个人头像（上传/移除）、深色模式、四套主题（经典/毛玻璃/新拟态/新野兽派）、隐私与合规说明
 
-## 功能截图
-
-> 以下为 375px 手机视口演示截图，数据为本地演示数据。
-
-<table>
-  <tr>
-    <td align="center" width="50%">
-      <img src="docs/screenshots/home.png" width="280" alt="首页仪表盘" /><br />
-      <b>🏠 首页仪表盘</b><br />
-      财务摘要 · 习惯 · 任务 · 快捷入口
-    </td>
-    <td align="center" width="50%">
-      <img src="docs/screenshots/record.png" width="280" alt="记一笔" /><br />
-      <b>✍️ 记一笔</b><br />
-      收支录入 · 分类 · 账户
-    </td>
-  </tr>
-  <tr>
-    <td align="center" width="50%">
-      <img src="docs/screenshots/habits.png" width="280" alt="习惯打卡" /><br />
-      <b>✅ 习惯打卡</b><br />
-      周视图打卡 · 连续天数
-    </td>
-    <td align="center" width="50%">
-      <img src="docs/screenshots/stats.png" width="280" alt="统计分析" /><br />
-      <b>📊 统计分析</b><br />
-      趋势图 · 甜甜圈图 · 习惯
-    </td>
-  </tr>
-  <tr>
-    <td align="center" width="50%">
-      <img src="docs/screenshots/more.png" width="280" alt="更多抽屉" /><br />
-      <b>☰ 更多抽屉</b><br />
-      账户/分类管理 · 设置 · 退出
-    </td>
-    <td align="center" width="50%"></td>
-  </tr>
-</table>
-
 ## 运行
 
 使用 HBuilderX 打开本目录：
