@@ -1,0 +1,21 @@
+{
+	"pages": [
+		{ "path": "pages/login/login", "style": { "navigationBarTitleText": "登录" } },
+		{ "path": "pages/register/register", "style": { "navigationBarTitleText": "注册" } },
+		{ "path": "pages/main/main", "style": { "navigationBarTitleText": "生活专属助手" } },
+		{ "path": "pages/finance/finance", "style": { "navigationBarTitleText": "财务记录" } },
+		{ "path": "pages/account/account", "style": { "navigationBarTitleText": "账户管理" } },
+		{ "path": "pages/categories/categories", "style": { "navigationBarTitleText": "分类管理" } },
+		{ "path": "pages/tasks/tasks", "style": { "navigationBarTitleText": "待办任务" } },
+		{ "path": "pages/new-task/new-task", "style": { "navigationBarTitleText": "新建任务" } },
+		{ "path": "pages/settings/settings", "style": { "navigationBarTitleText": "设置" } },
+		{ "path": "pages/add-habit/add-habit", "style": { "navigationBarTitleText": "添加习惯" } }
+	],
+	"globalStyle": {
+		"navigationBarTextStyle": "black",
+		"navigationBarTitleText": "LifestyleApp",
+		"navigationBarBackgroundColor": "#F8F8F8",
+		"backgroundColor": "#F8F8F8"
+	},
+	"uniIdRouter": {}
+}
