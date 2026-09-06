@@ -19,13 +19,49 @@
 
 > 以下为 375px 手机视口演示截图，数据为本地演示数据。
 
-| 功能 | 截图 | 说明 |
-| --- | --- | --- |
-| 首页 | ![首页](docs/screenshots/home.png) | 今日财务摘要、进行中习惯、今日任务与快捷入口，头部展示用户头像与昵称 |
-| 记账 | ![记账](docs/screenshots/record.png) | “记一笔”支出/收入录入：金额、日期、分类、资金账户与备注 |
-| 习惯 | ![习惯](docs/screenshots/habits.png) | 周视图打卡，点击圆点完成/取消打卡，支持上一周/下一周切换 |
-| 统计 | ![统计](docs/screenshots/stats.png) | 总收支/结余指标卡、财务趋势、支出分类甜甜圈图（按住/悬停扇区显示详情）与习惯坚持 |
-| 更多 | ![更多](docs/screenshots/more.png) | “更多”抽屉：账户与分类管理、待办任务、财务记录、设置、退出登录 |
+<table>
+  <tr>
+    <td width="50%" valign="top">
+      <h3>🏠 首页仪表盘</h3>
+      <img src="docs/screenshots/home.png" width="100%" alt="首页仪表盘" />
+      <p><strong>核心交互</strong>：今日/本月财务摘要、习惯进度、今日任务与快捷入口跳转。</p>
+      <p><strong>页面构成</strong>：头像/昵称 → 今日财务卡片 → 进行中习惯 → 今日任务 → 快捷入口。</p>
+      <p><strong>后续优化</strong>：财务摘要合并为三列紧凑卡；习惯/任务默认折叠只展示前两项；快捷入口使用统一图标网格。</p>
+    </td>
+    <td width="50%" valign="top">
+      <h3>✍️ 记一笔（记账）</h3>
+      <img src="docs/screenshots/record.png" width="100%" alt="记账页" />
+      <p><strong>核心交互</strong>：支出/收入切换、金额录入、日期选择、分类底部弹层、资金账户与备注。</p>
+      <p><strong>页面构成</strong>：收支切换 → 金额 → 日期 → 分类 → 资金账户 → 备注 → 保存记录。</p>
+      <p><strong>后续优化</strong>：金额输入放大、备注折叠展示；分类与账户选择可合并为更短的录入流。</p>
+    </td>
+  </tr>
+  <tr>
+    <td width="50%" valign="top">
+      <h3>✅ 习惯打卡</h3>
+      <img src="docs/screenshots/habits.png" width="100%" alt="习惯打卡页" />
+      <p><strong>核心交互</strong>：周视图打卡/取消、上一周/下一周切换、添加习惯入口。</p>
+      <p><strong>页面构成</strong>：周切换 → 习惯卡片（名称 + 本周次数/最长连续天数 + 七日圆点）→ 添加习惯。</p>
+      <p><strong>后续优化</strong>：圆点触控区增大（≥44px），连续天数徽章更醒目。</p>
+    </td>
+    <td width="50%" valign="top">
+      <h3>📊 统计分析</h3>
+      <img src="docs/screenshots/stats.png" width="100%" alt="统计页" />
+      <p><strong>核心交互</strong>：总收支/结余指标卡；≥2 个月时展示趋势折线；支出分类甜甜圈图支持按住/悬停查看详情。</p>
+      <p><strong>页面构成</strong>：三列指标卡 → 财务趋势 → 支出分类（环形图 + 图例）→ 习惯坚持。</p>
+      <p><strong>后续优化</strong>：单月数据提供趋势占位引导；环形图图例紧凑化并支持更多分类分页。</p>
+    </td>
+  </tr>
+  <tr>
+    <td width="50%" colspan="2" valign="top">
+      <h3>☰ 更多（个人中心/功能入口）</h3>
+      <img src="docs/screenshots/more.png" width="100%" alt="更多抽屉" />
+      <p><strong>核心交互</strong>：账户/分类管理、待办任务、财务记录、设置入口与退出登录。</p>
+      <p><strong>页面构成</strong>：抽屉头部（头像 + 昵称）→ 功能列表 → 退出登录。</p>
+      <p><strong>后续优化</strong>：按“数据管理/系统”分组展示；统一菜单图标风格。</p>
+    </td>
+  </tr>
+</table>
 
 ## 运行
 
